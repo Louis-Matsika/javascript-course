@@ -129,6 +129,11 @@ main {
   margin-right: 0.7rem;
 }
 
+.btn--start {
+  display: block;
+  top: 4rem;
+}
+
 .btn--new {
   top: 4rem;
 }
@@ -137,6 +142,10 @@ main {
 }
 .btn--hold {
   top: 46.1rem;
+}
+
+.hidden {
+  display: none;
 }
 
 .btn:active {
@@ -165,3 +174,4 @@ main {
   font-weight: 700;
   color: #c7365f;
 }
+
