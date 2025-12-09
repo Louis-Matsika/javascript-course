@@ -1,6 +1,6 @@
 "use strict";
 
-const assignment = "The Spread Operator...";
+const assignment = "...Rest Pattern and Parameters";
 
 const HTMLelements = document.querySelectorAll(".setup");
 
@@ -238,23 +238,16 @@ const books = [
   },
 ];
 
-const bookAuthors = [...books[0].author, ...books[1].author];
+const [mainKeyWord, ...rest] = books[0].keywords;
 
-console.log(bookAuthors);
+console.log(mainKeyWord, rest);
 
-function spellWord(string) {
-  let outputString = "";
-  const arrayFromString = [...string];
-  for (let i = 0; i < string.length; i++) {
-    outputString += `${arrayFromString[i]} `;
-  }
-  console.log(outputString.trim());
+const { publisher: bookPublisher, ...restOfTheBook } = books[1];
+
+console.log(bookPublisher, restOfTheBook);
+
+function printBookAuthorsCount(title, ...authors) {
+  console.log(`The book "${title}" has ${authors.length} authors`);
 }
 
-spellWord("hellooooo");
-
-function spellWord2(string){
-  console.log(...string);
-}
-
-spellWord2("hellooooo");
+printBookAuthorsCount("example", "hey", "ha");
