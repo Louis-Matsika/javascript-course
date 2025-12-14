@@ -99,7 +99,7 @@ function printGoals(...playersScored) {
   for (const item of playersScored) {
     console.log(item);
   }
-  console.log(playersScored.length);
+  console.log([...playersScored].reduce());
 }
 
 printGoals('a', 'b', 'c');
