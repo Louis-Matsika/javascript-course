@@ -229,15 +229,19 @@ console.log(gameEvents);
 
 // 1. Create an array 'events' of the different game events that happened (no duplicates)
 
-let setOfEvents = new Set();
+/*
+// let setOfEvents = new Set();
 
-for (const [k, v] of gameEvents) {
-  setOfEvents.add(v);
-}
+// for (const [k, v] of gameEvents) {
+//   setOfEvents.add(v);
+// }
 
-console.log(setOfEvents);
+// console.log(setOfEvents);
 
-const uniqueEventsArr = [...setOfEvents];
+// const uniqueEventsArr = [...setOfEvents];
+*/
+
+const uniqueEventsArr = [...new Set(gameEvents.values())];
 
 console.log(uniqueEventsArr);
 
