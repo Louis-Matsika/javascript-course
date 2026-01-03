@@ -324,25 +324,37 @@ const flights =
 //   🔴 Delayed Arrival from HEL to FAO (12h05)
 //            Departure from FAO to LIS (12h30)
 
-function airportFlights(data) {
-  const dataArr = data.split('+');
-  let airportFlights = [];
+// function airportFlights(data) {
+//   const dataArr = data.split('+');
+//   let airportFlights = [];
 
-  for (const i of dataArr) {
-    airportFlights.push(i.split(';'));
-  }
+//   for (const i of dataArr) {
+//     airportFlights.push(i.split(';'));
+//   }
 
-  for (const i of airportFlights) {
-    console.log(
-      `${i[0].includes('Delayed') ? '🔴 ' : ''}${i[0]
-        .replaceAll('_', ' ')
-        .trim()}
-      from ${i[1].slice(0, 3).toUpperCase()} to ${i[2]
-        .slice(0, 3)
-        .toUpperCase()}
-      (${i[3].replace(':', 'h')})`
-    );
-  }
+//   for (const i of airportFlights) {
+//     console.log(
+//       `${i[0].includes('Delayed') ? '🔴 ' : ''}${i[0]
+//         .replaceAll('_', ' ')
+//         .trim()}
+//       from ${i[1].slice(0, 3).toUpperCase()} to ${i[2]
+//         .slice(0, 3)
+//         .toUpperCase()}
+//       (${i[3].replace(':', 'h')})`
+//     );
+//   }
+// }
+
+// airportFlights(flights);
+
+for (const i of flights.split('+')) {
+  const [departure, from, to, time] = i.split(';');
+  const cleanDeparture = departure.replaceAll('_', ' ');
+  console.log(
+    departure.includes('Delayed') ? `🔴${cleanDeparture}` : `${cleanDeparture}`,
+    from.slice(0, 3).toUpperCase(),
+    'to',
+    to.slice(0, 3).toUpperCase(),
+    `(${time.replace(':', 'h')})`
+  );
 }
-
-airportFlights(flights);
