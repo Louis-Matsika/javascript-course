@@ -88,3 +88,87 @@ const hellooo = () => {
 };
 
 document.body.addEventListener('click', hellooo);
+
+// functions returning functions
+
+// function greet(greeting) {
+//   return function greetPerson(name) {
+//     return console.log(`${greeting} ${name}`);
+//   };
+// }
+
+const greet = greeting => {
+  const greetPerson = name => {
+    console.log(`${greeting} ${name}`);
+  };
+  return greetPerson;
+};
+
+greet('hey')('Louis');
+greet('yo')('SAI');
+
+const greeterHey = greet('hey');
+greeterHey('Maiken');
+
+const greeterYo = greet('yo');
+greeterYo("Pi'erre");
+
+const greeterHeyo = greeting => name => console.log(`${greeting} ${name}`);
+
+greeterHeyo('heyo')('James');
+
+// call and apply
+
+const dynasty8 = {
+  name: 'Dynasty8',
+  code: 'D8',
+  contracts: [],
+  sign(propertyCode, signer) {
+    console.log(
+      `${signer} has acquired property ${propertyCode}. Contract offer from ${this.name} (${this.code})`
+    );
+
+    this.contracts.push({ signer: `${signer}`, property: `${propertyCode}` });
+  },
+};
+
+dynasty8.sign('W1A111', 'Louis Matsika');
+dynasty8.sign('001001', "SAI's fate.");
+console.log(dynasty8.contracts);
+
+const mazeBank = {
+  name: 'Maze Bank',
+  code: 'MB',
+  contracts: [],
+};
+
+const sign = dynasty8.sign;
+
+// sign('LB0115', 'Rick Richtofen'); // error: js doesn't know what .this should be
+// call method
+
+sign.call(mazeBank, '3KB024', 'Steve Kurbert');
+sign.call(mazeBank, 'RN9ZM2', 'Rick Grimes');
+
+const prixLuxury = {
+  name: 'Priv Lux',
+  code: 'PL',
+  contracts: [],
+};
+
+sign.call(prixLuxury, 'M10SV1', 'Tony Montana');
+sign.call(prixLuxury, 'SP10H1', 'Montgomery Burns');
+
+console.log(dynasty8, mazeBank, prixLuxury);
+
+// apply method
+
+const contractInfo1 = ['CT0L10', 'Takeo Masaki'];
+const contractInfo2 = ['CT0L33', 'Kayan fortonimus Jr'];
+const contractInfo3 = ['M22L12', 'SAI Huncho'];
+
+sign.apply(dynasty8, contractInfo1);
+sign.apply(mazeBank, contractInfo2);
+sign.call(prixLuxury, ...contractInfo3);
+
+console.log(dynasty8, mazeBank, prixLuxury);
