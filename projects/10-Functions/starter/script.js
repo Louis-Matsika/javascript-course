@@ -172,3 +172,51 @@ sign.apply(mazeBank, contractInfo2);
 sign.call(prixLuxury, ...contractInfo3);
 
 console.log(dynasty8, mazeBank, prixLuxury);
+
+const contractInfo = [['CW8 QB1', 'Henry'
+], ['EL3 442', 'Alice'], ['SW3 983', 'Jenny']]
+
+// bind, make a funtion that presets the "this" keyword
+const signD8 = sign.bind(dynasty8);
+const signMB = sign.bind(mazeBank);
+const signPL = sign.bind(prixLuxury);
+
+signD8(...contractInfo[0]);
+signMB(...contractInfo[1]);
+signPL(...contractInfo[2]);
+
+console.log(mazeBank);
+
+// ...and can preset the arguments a function takes in e.g property with short term lets only thats constantly signing new tenants
+const signMBpropertyMS3 = sign.bind(mazeBank, 'MS3 356');
+
+signMBpropertyMS3('Martha');
+
+// with event listners
+dynasty8.properties = 500
+dynasty8.buyProperty = function(){
+  this.properties ++;
+}
+
+// the "this" keyword for events by defult is info about the event
+document.querySelector('.buy').addEventListener('click', dynasty8.buyProperty.bind(dynasty8))
+
+// partial application
+// const addTax = (tax, value) => {
+//   return value + value * tax
+// } 
+
+// const propertyTax = addTax.bind(null, 0.2);
+
+// console.log(addTax(0.2, 1000000));
+// console.log(propertyTax(1000000));
+
+const addTax = tax => value =>{
+return console.log(value + value * tax)
+}
+
+addTax(0.1)(100);
+
+const addPropertyTax = addTax(0.2);
+
+addPropertyTax(100);
